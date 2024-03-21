@@ -7,7 +7,12 @@ class myWalletClass {
     provider;
     constructor(private_key) {
         this.provider = new ethers_1.ethers.JsonRpcProvider('https://sepolia.infura.io/v3/9a729580802b4a5ba4cbab4c09eb1048');
-        this.wallet = new ethers_1.Wallet(private_key, this.provider);
+        if (private_key) {
+            this.wallet = new ethers_1.Wallet(private_key, this.provider);
+        }
+        else {
+            this.wallet = ethers_1.ethers.Wallet.createRandom(this.provider);
+        }
     }
     // ret: string with balance in eth
     // get the current balance of the wallet

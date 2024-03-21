@@ -1,12 +1,16 @@
-import { Wallet, Provider, ethers, WeiPerEther } from "ethers";
+import { Wallet, Provider, ethers, WeiPerEther, HDNodeWallet } from "ethers";
 /* global BigInt */
 
 class myWalletClass{
-    wallet: Wallet
+    wallet:  HDNodeWallet | Wallet
     provider: Provider
     constructor(private_key: string){
         this.provider = new ethers.JsonRpcProvider('https://sepolia.infura.io/v3/9a729580802b4a5ba4cbab4c09eb1048');
-        this.wallet = new Wallet(private_key, this.provider)
+        if (private_key) {
+            this.wallet = new Wallet(private_key, this.provider)
+        } else{
+            this.wallet = ethers.Wallet.createRandom(this.provider)
+        }
     }
 
     // ret: string with balance in eth
