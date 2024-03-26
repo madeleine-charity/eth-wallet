@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import myWalletClass from './myWallet';
+import myWallet from './myWallet';
 
 const styles = {
   container: {
@@ -25,7 +25,7 @@ const MyWallet = () => {
   const [gasLimit, setGasLimit] = useState('');
 
   const createWallet = () => {
-    const wallet = new myWalletClass(privateKey);
+    const wallet = new myWallet(privateKey);
     setWallet(wallet);
     setAddress(`Your address is: ${wallet.wallet.address}`);
   };

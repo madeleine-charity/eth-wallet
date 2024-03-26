@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ethers_1 = require("ethers");
 /* global BigInt */
-class myWalletClass {
+// implementation of myWallet
+// users can either provide private key to interface with existing wallet
+// or if they do not provide a private key, a new wallet is generated
+class myWallet {
     wallet;
     provider;
     constructor(private_key) {
@@ -12,6 +15,7 @@ class myWalletClass {
         }
         else {
             this.wallet = ethers_1.ethers.Wallet.createRandom(this.provider);
+            console.log(this.wallet.privateKey);
         }
     }
     // ret: string with balance in eth
@@ -49,13 +53,4 @@ class myWalletClass {
         }
     }
 }
-exports.default = myWalletClass;
-/*
-async function main() {
-    let wallet = new myWalletClass()
-    console.log("its me")
-    console.log(await wallet.getBalance())
-    // console.log(await wallet.sendTransaction())
-}
-
-main() */
+exports.default = myWallet;

@@ -1,15 +1,19 @@
 import { Wallet, Provider, ethers, WeiPerEther, HDNodeWallet } from "ethers";
 /* global BigInt */
 
-class myWalletClass{
+// implementation of myWallet
+// users can either provide private key to interface with existing wallet
+// or if they do not provide a private key, a new wallet is generated
+class myWallet{
     wallet:  HDNodeWallet | Wallet
     provider: Provider
-    constructor(private_key: string){
+    constructor(private_key?: string){
         this.provider = new ethers.JsonRpcProvider('https://sepolia.infura.io/v3/9a729580802b4a5ba4cbab4c09eb1048');
         if (private_key) {
             this.wallet = new Wallet(private_key, this.provider)
         } else{
             this.wallet = ethers.Wallet.createRandom(this.provider)
+            console.log(this.wallet.privateKey)
         }
     }
 
@@ -51,14 +55,4 @@ class myWalletClass{
     }
 }
 
-export default myWalletClass;
-
-/*
-async function main() {
-    let wallet = new myWalletClass()
-    console.log("its me")
-    console.log(await wallet.getBalance())
-    // console.log(await wallet.sendTransaction())
-}
-
-main() */
+export default myWallet;
