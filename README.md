@@ -5,7 +5,8 @@ This project consists of a basic React front end that allows a user to interact 
   - signMessage(msg: string) → signedMessage: string (The signed message with the private key)
   - sendTransaction(to: string, amount: number) → transactionHash: string (sends a transaction on the blockchain)
 
-The backend uses ethers.js and runs on the Sepolia testnet. The code I wrote is in src/myWallet.ts, src/myWalletTest.ts, and App.jsx.
+The backend uses ethers.js and runs on the Sepolia testnet. The code I wrote is in src/myWallet.ts, src/myWalletTest.ts, and App.jsx. 
+Deployed at https://madeleine-charity.github.io/eth-wallet/
 
 # Security considerations 
 1. Private key generation 
